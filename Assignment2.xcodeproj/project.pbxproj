@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E2A1560233AEF3F00CFCD1C /* PulseAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2A155F233AEF3F00CFCD1C /* PulseAnimation.swift */; };
 		2EBE5F8F2339A55000193864 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBE5F8E2339A55000193864 /* AppDelegate.swift */; };
 		2EBE5F942339A55000193864 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EBE5F922339A55000193864 /* Main.storyboard */; };
 		2EBE5F962339A55200193864 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EBE5F952339A55200193864 /* Assets.xcassets */; };
@@ -45,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2E2A155F233AEF3F00CFCD1C /* PulseAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseAnimation.swift; sourceTree = "<group>"; };
 		2EBE5F8B2339A55000193864 /* Assignment2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Assignment2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EBE5F8E2339A55000193864 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2EBE5F932339A55000193864 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 			children = (
 				2EBE5FC22339A8CF00193864 /* Colors.xcassets */,
 				2EBE5FC42339A8E200193864 /* Themes.swift */,
+				2E2A155F233AEF3F00CFCD1C /* PulseAnimation.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -365,6 +368,7 @@
 				2EBE5FC72339ABFE00193864 /* DashboardViewController.swift in Sources */,
 				2EBE5F8F2339A55000193864 /* AppDelegate.swift in Sources */,
 				2EBE5FD22339E01F00193864 /* TemperatureViewController.swift in Sources */,
+				2E2A1560233AEF3F00CFCD1C /* PulseAnimation.swift in Sources */,
 				2EBE5FDF2339E7E300193864 /* PressureViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -558,13 +562,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Assignment2/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = edu.monash.Assignment2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -575,13 +580,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Assignment2/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = edu.monash.Assignment2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
