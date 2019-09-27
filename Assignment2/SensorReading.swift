@@ -14,7 +14,7 @@ class SensorReading: NSObject {
     var lux: Double
     var pressure: Double
     var temperature: Double
-    var timestamp: String
+    var timestamp: Date
        
     override init() {
         self.id = ""
@@ -22,6 +22,6 @@ class SensorReading: NSObject {
         self.lux = 0
         self.pressure = 0
         self.temperature = 0
-        self.timestamp = ""
+        self.timestamp = Date()
     }
 }

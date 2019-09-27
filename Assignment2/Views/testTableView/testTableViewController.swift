@@ -17,8 +17,6 @@ class testTableViewController: UITableViewController, DatabaseListener {
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         databaseController = appDelegate.databaseController
-
-        
     }
 
     // MARK: - Table view data source
@@ -34,24 +32,24 @@ class testTableViewController: UITableViewController, DatabaseListener {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-           super.viewWillAppear(animated)
-           databaseController?.addListener(listener: self)
-       }
+        super.viewWillAppear(animated)
+        databaseController?.addListener(listener: self)
+    }
        
-       override func viewWillDisappear(_ animated: Bool) {
-           super.viewWillDisappear(animated)
-           databaseController?.removeListener(listener: self)
-       }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        databaseController?.removeListener(listener: self)
+    }
+    
     func onSensorReadingListChange(change: DatabaseChange, sensorReadings: [SensorReading]) {
         allReadings = sensorReadings
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "readingCell", for: indexPath)
         let reading = allReadings[indexPath.row]
         cell.textLabel!.text = reading.id
-        cell.detailTextLabel!.text = reading.timestamp
+        cell.detailTextLabel!.text = "\(reading.timestamp)"
     
         return cell
     }

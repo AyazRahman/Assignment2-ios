@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DashboardViewController: UIViewController {
+class DashboardViewController: UIViewController, DatabaseListener {
 
     @IBOutlet weak var weatherView: UIView!
     @IBOutlet weak var altitudeView: UIView!
@@ -19,10 +19,13 @@ class DashboardViewController: UIViewController {
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var altitudeLabel: UILabel!
     @IBOutlet weak var pressureLabel: UILabel!
+    
+    var allSensorReadings = [SensorReading]()
+    weak var databaseController: DatabaseProtocol?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
         //view.backgroundColor = Theme.primary!.withAlphaComponent(0.4)
         cityLabel.setStyle()
         conditionLabel.setStyle()
@@ -31,21 +34,21 @@ class DashboardViewController: UIViewController {
         pressureLabel.setStyle()
         
         setupAnimatedControls()
-        
-        
     }
     
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         UIView.animate(withDuration: 1.0, delay: 0.3, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: [], animations: {
             self.weatherView.transform = .identity
             self.altitudeView.transform = .identity
             self.pressureView.transform = .identity
         }) { (success) in
             //for doing something after animation finished
+            
         }
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        databaseController = appDelegate.databaseController
     }
     
     func setupAnimatedControls() {
@@ -54,9 +57,24 @@ class DashboardViewController: UIViewController {
         pressureView.transform = CGAffineTransform(translationX: pressureView.frame.width, y: 0)
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle{
+    override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        databaseController?.addListener(listener: self)
+    }
+          
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        databaseController?.removeListener(listener: self)
+    }
+       
+    func onSensorReadingListChange(change: DatabaseChange, sensorReadings: [SensorReading]) {
+        allSensorReadings = sensorReadings
+    }
+    
     /*
     // MARK: - Navigation
 
