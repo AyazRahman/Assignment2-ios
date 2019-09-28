@@ -20,7 +20,7 @@ class DashboardViewController: UIViewController, DatabaseListener {
     @IBOutlet weak var altitudeLabel: UILabel!
     @IBOutlet weak var pressureLabel: UILabel!
     
-    var allSensorReadings = [SensorReading]()
+    //var allSensorReadings = [SensorReading]()
     weak var databaseController: DatabaseProtocol?
     
     override func viewDidLoad() {
@@ -75,14 +75,11 @@ class DashboardViewController: UIViewController, DatabaseListener {
     }
        
     func onSensorReadingListChange(change: DatabaseChange, sensorReadings: [SensorReading]) {
-        
-            self.allSensorReadings = sensorReadings
-        if allSensorReadings.count > 0 {
-            let currentReading = self.allSensorReadings[self.allSensorReadings.count - 1 ]
+        if Data.sensorReadings.count > 0 {
+            let currentReading = Data.sensorReadings[Data.sensorReadings.count - 1 ]
             self.temperatureLabel.text = "\(currentReading.temperature) °C"
             self.pressureLabel.text = "\(currentReading.pressure) kPa"
             self.altitudeLabel.text = "\(currentReading.altitude) m"
-            
         }
     }
     

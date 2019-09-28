@@ -28,6 +28,7 @@
 		2EBE5FDD2339E7C800193864 /* AltitudeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBE5FDC2339E7C800193864 /* AltitudeViewController.swift */; };
 		2EBE5FDF2339E7E300193864 /* PressureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBE5FDE2339E7E300193864 /* PressureViewController.swift */; };
 		797871BAB00F1252576EFAC6 /* Pods_Assignment2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B82CF2A71579513959B1B6A /* Pods_Assignment2Tests.framework */; };
+		8F83EAB4233F6095003CD998 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F83EAB3233F6095003CD998 /* Data.swift */; };
 		9F126CDCBB122C0C3EDEBE03 /* Pods_Assignment2_Assignment2UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19EEB824CA768CB872047599 /* Pods_Assignment2_Assignment2UITests.framework */; };
 		A6CA541C233CA19D00D99E4F /* MulticastDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6CA541B233CA19D00D99E4F /* MulticastDelegate.swift */; };
 		A6CA541E233CA20900D99E4F /* FirebaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6CA541D233CA20900D99E4F /* FirebaseController.swift */; };
@@ -88,6 +89,7 @@
 		5B82CF2A71579513959B1B6A /* Pods_Assignment2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Assignment2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		66F2846FF9C30BA2854F3A42 /* Pods-Assignment2-Assignment2UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Assignment2-Assignment2UITests.release.xcconfig"; path = "Target Support Files/Pods-Assignment2-Assignment2UITests/Pods-Assignment2-Assignment2UITests.release.xcconfig"; sourceTree = "<group>"; };
 		838E6B373E0D780D6CEB742D /* Pods-Assignment2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Assignment2.debug.xcconfig"; path = "Target Support Files/Pods-Assignment2/Pods-Assignment2.debug.xcconfig"; sourceTree = "<group>"; };
+		8F83EAB3233F6095003CD998 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		A6CA541B233CA19D00D99E4F /* MulticastDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MulticastDelegate.swift; sourceTree = "<group>"; };
 		A6CA541D233CA20900D99E4F /* FirebaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseController.swift; sourceTree = "<group>"; };
 		A6CA541F233CA21E00D99E4F /* DatabaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseProtocol.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 		2EBE5F8D2339A55000193864 /* Assignment2 */ = {
 			isa = PBXGroup;
 			children = (
+				8F83EAB2233F607B003CD998 /* Data */,
 				A6CA542F233DE05000D99E4F /* GoogleService-Info.plist */,
 				A6CA541A233CA17C00D99E4F /* Database */,
 				2EBE5FCA2339B25F00193864 /* Extensions */,
@@ -281,6 +284,14 @@
 				5B82CF2A71579513959B1B6A /* Pods_Assignment2Tests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8F83EAB2233F607B003CD998 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				8F83EAB3233F6095003CD998 /* Data.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 		A6CA541A233CA17C00D99E4F /* Database */ = {
@@ -549,6 +560,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2EBE5FC92339B25400193864 /* UILabelExtension.swift in Sources */,
+				8F83EAB4233F6095003CD998 /* Data.swift in Sources */,
 				A6CA542A233CA55700D99E4F /* testTableViewController.swift in Sources */,
 				2EBE5FDD2339E7C800193864 /* AltitudeViewController.swift in Sources */,
 				2EBE5FCF2339DCD100193864 /* StatsView.swift in Sources */,

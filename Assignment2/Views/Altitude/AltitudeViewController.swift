@@ -20,6 +20,8 @@ class AltitudeViewController: UIViewController {
         currentLabel.text = "100m"
         avg24hoursLabel.text = "100m"
         avg3daysLabel.text = "100m"
+        
+        print(Data.sensorReadings.count)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle{
