@@ -82,28 +82,28 @@ class FirebaseController: NSObject, DatabaseProtocol {
                 newReading.timestamp = timestamp!
                 newReading.id = documentRef
                
-                Data.sensorReadings.append(newReading)
+                sensorReadingList.append(newReading)
             }
            
             // for remove we find the reading in the array by ID then remove it
             if change.type == .removed {
                 print("Removed Hero: \(change.document.data())")
                 if let index = getReadingIndexByID(reference: documentRef) {
-                    Data.sensorReadings.remove(at: index)
+                    sensorReadingList.remove(at: index)
                 }
             }
         }
-        Data.sensorReadings = Data.sensorReadings.sorted(by: { $0.timestamp < $1.timestamp })
+        sensorReadingList = sensorReadingList.sorted(by: { $0.timestamp < $1.timestamp })
         // call db listeners and provide them with the most updated sensor reading list
         listeners.invoke { (listener) in
-            listener.onSensorReadingListChange(change: .update, sensorReadings: Data.sensorReadings)
+            listener.onSensorReadingListChange(change: .update, sensorReadings: sensorReadingList)
         }
     }
    
     func getReadingIndexByID(reference: String) -> Int? {
-        for reading in Data.sensorReadings {
+        for reading in sensorReadingList {
             if (reading.id == reference) {
-                return Data.sensorReadings.firstIndex(of: reading)
+                return sensorReadingList.firstIndex(of: reading)
             }
         }
         return nil
@@ -111,7 +111,7 @@ class FirebaseController: NSObject, DatabaseProtocol {
    
     func addListener(listener: DatabaseListener) {
         listeners.addDelegate(listener)
-        listener.onSensorReadingListChange(change: .update, sensorReadings: Data.sensorReadings)
+        listener.onSensorReadingListChange(change: .update, sensorReadings: sensorReadingList)
     }
       
     func removeListener(listener: DatabaseListener) {

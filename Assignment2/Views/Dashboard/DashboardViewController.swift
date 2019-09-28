@@ -75,6 +75,7 @@ class DashboardViewController: UIViewController, DatabaseListener {
     }
        
     func onSensorReadingListChange(change: DatabaseChange, sensorReadings: [SensorReading]) {
+        //print("In Dashboard")
         if Data.sensorReadings.count > 0 {
             let currentReading = Data.sensorReadings[Data.sensorReadings.count - 1 ]
             self.temperatureLabel.text = "\(currentReading.temperature) °C"
