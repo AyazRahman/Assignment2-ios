@@ -34,6 +34,9 @@ class DashboardViewController: UIViewController, DatabaseListener {
         pressureLabel.setStyle()
         
         setupAnimatedControls()
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        databaseController = appDelegate.databaseController
     }
     
 
@@ -45,10 +48,10 @@ class DashboardViewController: UIViewController, DatabaseListener {
             self.pressureView.transform = .identity
         }) { (success) in
             //for doing something after animation finished
+            print("Animated")
             
         }
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        databaseController = appDelegate.databaseController
+        
     }
     
     func setupAnimatedControls() {
@@ -72,7 +75,15 @@ class DashboardViewController: UIViewController, DatabaseListener {
     }
        
     func onSensorReadingListChange(change: DatabaseChange, sensorReadings: [SensorReading]) {
-        allSensorReadings = sensorReadings
+        
+            self.allSensorReadings = sensorReadings
+        if allSensorReadings.count > 0 {
+            let currentReading = self.allSensorReadings[self.allSensorReadings.count - 1 ]
+            self.temperatureLabel.text = "\(currentReading.temperature) °C"
+            self.pressureLabel.text = "\(currentReading.pressure) kPa"
+            self.altitudeLabel.text = "\(currentReading.altitude) m"
+            
+        }
     }
     
     /*

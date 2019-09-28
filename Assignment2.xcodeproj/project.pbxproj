@@ -94,7 +94,7 @@
 		A6CA5423233CA35A00D99E4F /* SensorReading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorReading.swift; sourceTree = "<group>"; };
 		A6CA5429233CA55700D99E4F /* testTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testTableViewController.swift; sourceTree = "<group>"; };
 		A6CA542B233CA5AD00D99E4F /* testTableView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = testTableView.storyboard; sourceTree = "<group>"; };
-		A6CA542F233DE05000D99E4F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/ass2plist/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A6CA542F233DE05000D99E4F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C9865090CD87BB84D323C563 /* Pods-Assignment2Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Assignment2Tests.release.xcconfig"; path = "Target Support Files/Pods-Assignment2Tests/Pods-Assignment2Tests.release.xcconfig"; sourceTree = "<group>"; };
 		FACAAFE5AFFBFCBBD18D1D5B /* Pods_Assignment2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Assignment2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
