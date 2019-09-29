@@ -33,7 +33,7 @@ class TemperatureViewController: UIViewController {
         var lineChartData = [ChartDataEntry]()
         let number = 10
         for i in 0..<number{
-            let value = ChartDataEntry(x: Double(i), y: Double(i))
+            let value = ChartDataEntry(x: Double(i), y: Data.sensorReadings[i].temperature)
             lineChartData.append(value)
         }
         let line = LineChartDataSet(entries: lineChartData, label: "")
