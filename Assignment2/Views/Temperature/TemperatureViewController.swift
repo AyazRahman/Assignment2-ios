@@ -7,12 +7,16 @@
 //
 
 import UIKit
+import Charts
 
 class TemperatureViewController: UIViewController {
 
+    @IBOutlet weak var chartView: LineChartView!
+    
     @IBOutlet weak var currentLabel: UILabel!
     @IBOutlet weak var avg24hoursLabel: UILabel!
     @IBOutlet weak var avg3daysLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,8 +24,40 @@ class TemperatureViewController: UIViewController {
         currentLabel.text = "17°"
         avg24hoursLabel.text = "17°"
         avg3daysLabel.text = "17°"
+        
+        updateGraph()
     }
     
+    func updateGraph(){
+        chartView.legend.enabled = false
+        var lineChartData = [ChartDataEntry]()
+        let number = 10
+        for i in 0..<number{
+            let value = ChartDataEntry(x: Double(i), y: Double(i))
+            lineChartData.append(value)
+        }
+        let line = LineChartDataSet(entries: lineChartData, label: "")
+        line.colors = [Theme.text!]
+        let data = LineChartData()
+        data.addDataSet(line)
+        chartView.data = data
+        chartView.chartDescription?.text = "Temperature Chart"
+        //Changing color
+        chartView.data?.setValueTextColor(Theme.text!)
+        chartView.xAxis.labelTextColor = Theme.text!
+        chartView.leftAxis.labelTextColor = Theme.text!
+        chartView.rightAxis.labelTextColor = Theme.text!
+        chartView.chartDescription?.textColor = Theme.text!
+        
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if Data.currentReading.id != ""{
+            currentLabel.text = "\(Int(Data.currentReading.temperature)) °C"
+        }
+    }
     
     override var preferredStatusBarStyle: UIStatusBarStyle{
         return .lightContent

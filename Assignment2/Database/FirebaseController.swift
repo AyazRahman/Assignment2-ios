@@ -44,6 +44,7 @@ class FirebaseController: NSObject, DatabaseProtocol {
         // In this case it is the entire collection of sensor readings
         //this query contains all readings and not just the updated ones, we need to filter them out
         //everytime an update is made to the sensor_readings, this method will be called which will call    parseSensorReadingsSnapshot
+        
         sensorReadingsRef?.addSnapshotListener { querySnapshot, error in
             guard (querySnapshot?.documents) != nil else {
                 print("error fetching documents: \(error!)")
@@ -82,28 +83,31 @@ class FirebaseController: NSObject, DatabaseProtocol {
                 newReading.timestamp = timestamp!
                 newReading.id = documentRef
                
-                sensorReadingList.append(newReading)
+                Data.sensorReadings.append(newReading)
             }
            
             // for remove we find the reading in the array by ID then remove it
             if change.type == .removed {
                 print("Removed Hero: \(change.document.data())")
                 if let index = getReadingIndexByID(reference: documentRef) {
-                    sensorReadingList.remove(at: index)
+                    Data.sensorReadings.remove(at: index)
                 }
             }
+            if Data.sensorReadings.count > 0{
+                Data.currentReading = Data.sensorReadings.last!
+            }
         }
-        sensorReadingList = sensorReadingList.sorted(by: { $0.timestamp < $1.timestamp })
+        Data.sensorReadings = Data.sensorReadings.sorted(by: { $0.timestamp < $1.timestamp })
         // call db listeners and provide them with the most updated sensor reading list
         listeners.invoke { (listener) in
-            listener.onSensorReadingListChange(change: .update, sensorReadings: sensorReadingList)
+            listener.onSensorReadingListChange(change: .update, sensorReadings: Data.sensorReadings)
         }
     }
    
     func getReadingIndexByID(reference: String) -> Int? {
-        for reading in sensorReadingList {
+        for reading in Data.sensorReadings {
             if (reading.id == reference) {
-                return sensorReadingList.firstIndex(of: reading)
+                return Data.sensorReadings.firstIndex(of: reading)
             }
         }
         return nil
@@ -111,7 +115,7 @@ class FirebaseController: NSObject, DatabaseProtocol {
    
     func addListener(listener: DatabaseListener) {
         listeners.addDelegate(listener)
-        listener.onSensorReadingListChange(change: .update, sensorReadings: sensorReadingList)
+        listener.onSensorReadingListChange(change: .update, sensorReadings: Data.sensorReadings)
     }
       
     func removeListener(listener: DatabaseListener) {

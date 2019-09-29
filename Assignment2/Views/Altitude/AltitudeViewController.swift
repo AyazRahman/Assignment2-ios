@@ -28,6 +28,13 @@ class AltitudeViewController: UIViewController {
         return .lightContent
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if Data.currentReading.id != ""{
+            currentLabel.text = "\(Data.currentReading.altitude) m"
+        }
+    }
+    
 
     /*
     // MARK: - Navigation

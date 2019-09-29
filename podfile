@@ -12,6 +12,7 @@ target 'Assignment2' do
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
   pod 'Firebase/Storage'
+  pod 'Charts'
 
   target 'Assignment2Tests' do
     inherit! :search_paths

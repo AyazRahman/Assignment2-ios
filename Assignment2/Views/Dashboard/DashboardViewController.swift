@@ -77,8 +77,8 @@ class DashboardViewController: UIViewController, DatabaseListener {
     func onSensorReadingListChange(change: DatabaseChange, sensorReadings: [SensorReading]) {
         //print("In Dashboard")
         if Data.currentReading.id != "" {
-            self.temperatureLabel.text = "\(Data.currentReading.temperature) °C"
-            self.pressureLabel.text = "\(Data.currentReading.pressure) kPa"
+            self.temperatureLabel.text = "\(Int(Data.currentReading.temperature)) °C"
+            self.pressureLabel.text = "\(Int(Data.currentReading.pressure/1000)) kPa"
             self.altitudeLabel.text = "\(Data.currentReading.altitude) m"
         }
     }

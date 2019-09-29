@@ -26,6 +26,13 @@ class PressureViewController: UIViewController {
         return .lightContent
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if Data.currentReading.id != ""{
+            currentLabel.text = "\(Int(Data.currentReading.pressure/1000)) kPa"
+        }
+    }
+    
 
     /*
     // MARK: - Navigation
