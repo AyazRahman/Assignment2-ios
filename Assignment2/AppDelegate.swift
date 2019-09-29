@@ -21,6 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         databaseController = FirebaseController()
         //databaseController?.addListener(listener: self)
+        //UITabBar.appearance().barTintColor = Theme.primary!
+        UITabBar.appearance().tintColor = Theme.text!
         return true
     }
 

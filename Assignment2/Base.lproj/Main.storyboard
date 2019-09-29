@@ -10,12 +10,12 @@
         <!--Tab Bar Controller-->
         <scene sceneID="kp7-QF-kOA">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7kO-FL-I8W" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tabBarController id="wte-xf-4lb" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="NyF-8E-J7F">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="0.047067561619718312" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" red="0.01919877901673317" green="0.14292189478874207" blue="0.24667689204216003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="ffu-rd-VuQ" kind="relationship" relationship="viewControllers" id="BLE-wf-PS7"/>
@@ -25,6 +25,7 @@
                         <segue destination="xP8-hr-rJq" kind="relationship" relationship="viewControllers" id="yU5-Nv-l5m"/>
                     </connections>
                 </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7kO-FL-I8W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1459" y="741"/>
         </scene>
