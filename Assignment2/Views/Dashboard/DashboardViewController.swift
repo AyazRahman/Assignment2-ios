@@ -48,7 +48,7 @@ class DashboardViewController: UIViewController, DatabaseListener {
             self.pressureView.transform = .identity
         }) { (success) in
             //for doing something after animation finished
-            print("Animated")
+            
             
         }
         
@@ -76,11 +76,10 @@ class DashboardViewController: UIViewController, DatabaseListener {
        
     func onSensorReadingListChange(change: DatabaseChange, sensorReadings: [SensorReading]) {
         //print("In Dashboard")
-        if Data.sensorReadings.count > 0 {
-            let currentReading = Data.sensorReadings[Data.sensorReadings.count - 1 ]
-            self.temperatureLabel.text = "\(currentReading.temperature) °C"
-            self.pressureLabel.text = "\(currentReading.pressure) kPa"
-            self.altitudeLabel.text = "\(currentReading.altitude) m"
+        if Data.currentReading.id != "" {
+            self.temperatureLabel.text = "\(Data.currentReading.temperature) °C"
+            self.pressureLabel.text = "\(Data.currentReading.pressure) kPa"
+            self.altitudeLabel.text = "\(Data.currentReading.altitude) m"
         }
     }
     

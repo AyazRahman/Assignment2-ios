@@ -52,6 +52,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, DatabaseListener {
     func onSensorReadingListChange(change: DatabaseChange, sensorReadings: [SensorReading]) {
         //print("In App Delegate")
         Data.sensorReadings = sensorReadings
+        if Data.sensorReadings.count > 0 {
+            Data.currentReading = Data.sensorReadings.last!
+        }
     }
 
 

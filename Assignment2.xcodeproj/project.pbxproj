@@ -178,7 +178,6 @@
 				2EBE5F952339A55200193864 /* Assets.xcassets */,
 				2EBE5F972339A55200193864 /* LaunchScreen.storyboard */,
 				2EBE5F9A2339A55200193864 /* Info.plist */,
-				A6CA5423233CA35A00D99E4F /* SensorReading.swift */,
 			);
 			path = Assignment2;
 			sourceTree = "<group>";
@@ -290,6 +289,7 @@
 			isa = PBXGroup;
 			children = (
 				8F83EAB3233F6095003CD998 /* Data.swift */,
+				A6CA5423233CA35A00D99E4F /* SensorReading.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";

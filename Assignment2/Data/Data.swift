@@ -10,4 +10,5 @@ import Foundation
 
 class Data {
     static var sensorReadings = [SensorReading]()
+    static var currentReading = SensorReading()
 }
