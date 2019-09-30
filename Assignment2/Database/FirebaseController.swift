@@ -69,12 +69,12 @@ class FirebaseController: NSObject, DatabaseProtocol {
             dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
             let timestamp = dateFormatter.date(from: timestampString)
 
-            print(documentRef)
+            //print(documentRef)
            
             //for each document we check the type of change that has occured
             // for an add create a new reading and append it to the list of readings
             if change.type == .added {
-                print("new reading: \(change.document.data())")
+                //print("new reading: \(change.document.data())")
                 let newReading = SensorReading()
                 newReading.altitude = altitude
                 newReading.lux = lux

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DashboardViewController: UIViewController, DatabaseListener {
+class DashboardViewController: UIViewController/*, DatabaseListener*/ {
 
     @IBOutlet weak var weatherView: UIView!
     @IBOutlet weak var altitudeView: UIView!
@@ -66,12 +66,12 @@ class DashboardViewController: UIViewController, DatabaseListener {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        databaseController?.addListener(listener: self)
+       // databaseController?.addListener(listener: self)
     }
           
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        databaseController?.removeListener(listener: self)
+       // databaseController?.removeListener(listener: self)
     }
        
     func onSensorReadingListChange(change: DatabaseChange, sensorReadings: [SensorReading]) {
