@@ -46,8 +46,9 @@ class PressureViewController: UIViewController {
     
     func setFields(){
         currentLabel.text = "\(Data.currentReading.pressure/1000) kPa"
-        avg24hoursLabel.text = "17°"
-        avg3daysLabel.text = "17°"
+        let average = Data.get3days(sensor: "Pressure")
+        avg24hoursLabel.text = (average[0] == "NA" ? "NA" : "\(average[0]) kPa")
+        avg3daysLabel.text = (average[1] == "NA" ? "NA" : "\(average[1]) kPa")
     }
     
     func updateGraph(){
