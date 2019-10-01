@@ -23,9 +23,9 @@ class AltitudeViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        currentLabel.text = "100m"
-        avg24hoursLabel.text = "100m"
-        avg3daysLabel.text = "100m"
+        currentLabel.text = "NA"
+        avg24hoursLabel.text = "NA"
+        avg3daysLabel.text = "NA"
         
         if Data.currentReading.id != ""{
             setFields()

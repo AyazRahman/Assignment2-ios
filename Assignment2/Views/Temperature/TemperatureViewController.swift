@@ -24,8 +24,8 @@ class TemperatureViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         currentLabel.text = "NA"
-        avg24hoursLabel.text = "17°"
-        avg3daysLabel.text = "17°"
+        avg24hoursLabel.text = "NA"
+        avg3daysLabel.text = "NA"
         
         if Data.currentReading.id != "" {
             setFields()

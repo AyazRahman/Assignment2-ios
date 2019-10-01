@@ -24,8 +24,8 @@ class PressureViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         currentLabel.text = "NA"
-        avg24hoursLabel.text = "Na"
-        avg3daysLabel.text = "Na"
+        avg24hoursLabel.text = "NA"
+        avg3daysLabel.text = "NA"
         if Data.currentReading.id != ""{
             setFields()
             updateGraph()
