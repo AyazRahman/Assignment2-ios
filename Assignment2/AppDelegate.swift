@@ -72,7 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         content.body = "Current Stats: Altitude: \(Data.currentReading.altitude), Pressure: \(Data.currentReading.pressure), Temperature: \(Data.currentReading.temperature)"
         content.sound = UNNotificationSound.default
         
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 60, repeats: true)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3600, repeats: true)
         
         let notificationRequest:UNNotificationRequest = UNNotificationRequest(identifier: "notification", content: content, trigger: trigger)
         
