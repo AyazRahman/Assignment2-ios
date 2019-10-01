@@ -20,8 +20,10 @@ class DashboardViewController: UIViewController/*, DatabaseListener*/ {
     @IBOutlet weak var altitudeLabel: UILabel!
     @IBOutlet weak var pressureLabel: UILabel!
     
+    var observer: NSObjectProtocol?
+    
     //var allSensorReadings = [SensorReading]()
-    weak var databaseController: DatabaseProtocol?
+    //weak var databaseController: DatabaseProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,10 +37,19 @@ class DashboardViewController: UIViewController/*, DatabaseListener*/ {
         
         setupAnimatedControls()
         
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        databaseController = appDelegate.databaseController
+        if Data.currentReading.id != ""{
+            setFields()
+        }
+        
+        /*let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        databaseController = appDelegate.databaseController*/
     }
     
+    func setFields(){
+        self.temperatureLabel.text = "\(Int(Data.currentReading.temperature)) °C"
+        self.pressureLabel.text = "\(Int(Data.currentReading.pressure/1000)) kPa"
+        self.altitudeLabel.text = "\(Data.currentReading.altitude) m"
+    }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -67,21 +78,27 @@ class DashboardViewController: UIViewController/*, DatabaseListener*/ {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
        // databaseController?.addListener(listener: self)
+       observer = NotificationCenter.default.addObserver(forName: .currentReadingUpdate, object: nil, queue: OperationQueue.main) { (notification) in
+            self.setFields()
+        }
     }
           
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
        // databaseController?.removeListener(listener: self)
+        if let observer = observer {
+            NotificationCenter.default.removeObserver(observer)
+        }
     }
        
-    func onSensorReadingListChange(change: DatabaseChange, sensorReadings: [SensorReading]) {
+    /*func onSensorReadingListChange(change: DatabaseChange, sensorReadings: [SensorReading]) {
         //print("In Dashboard")
         if Data.currentReading.id != "" {
             self.temperatureLabel.text = "\(Int(Data.currentReading.temperature)) °C"
             self.pressureLabel.text = "\(Int(Data.currentReading.pressure/1000)) kPa"
             self.altitudeLabel.text = "\(Data.currentReading.altitude) m"
         }
-    }
+    }*/
     
     /*
     // MARK: - Navigation

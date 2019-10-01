@@ -10,7 +10,7 @@ import UIKit
 import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, DatabaseListener {
     
     
 
@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         databaseController = FirebaseController()
-        //databaseController?.addListener(listener: self)
+        databaseController?.addListener(listener: self)
         //UITabBar.appearance().barTintColor = Theme.primary!
         UITabBar.appearance().tintColor = Theme.text!
         requestPermissionNotifications()
@@ -55,13 +55,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
-    /*func onSensorReadingListChange(change: DatabaseChange, sensorReadings: [SensorReading]) {
-        //print("In App Delegate")
-        /*Data.sensorReadings = sensorReadings
+    func onSensorReadingListChange(change: DatabaseChange, sensorReadings: [SensorReading]) {
+        Data.sensorReadings = sensorReadings
         if Data.sensorReadings.count > 0 {
             Data.currentReading = Data.sensorReadings.last!
-        }*/
-    }*/
+            NotificationCenter.default.post(name: .currentReadingUpdate, object: nil)
+        }
+    }
     
     func postLocalNotifications(eventTitle:String){
         let center = UNUserNotificationCenter.current()
@@ -72,7 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         content.body = "Current Stats: Altitude: \(Data.currentReading.altitude), Pressure: \(Data.currentReading.pressure), Temperature: \(Data.currentReading.temperature)"
         content.sound = UNNotificationSound.default
         
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3600, repeats: true)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 60, repeats: true)
         
         let notificationRequest:UNNotificationRequest = UNNotificationRequest(identifier: "notification", content: content, trigger: trigger)
         

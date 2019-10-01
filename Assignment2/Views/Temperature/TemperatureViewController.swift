@@ -17,23 +17,36 @@ class TemperatureViewController: UIViewController {
     @IBOutlet weak var avg24hoursLabel: UILabel!
     @IBOutlet weak var avg3daysLabel: UILabel!
     
+    var observer: NSObjectProtocol?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        currentLabel.text = "17°"
+        currentLabel.text = "NA"
         avg24hoursLabel.text = "17°"
         avg3daysLabel.text = "17°"
         
-        updateGraph()
+        if Data.currentReading.id != "" {
+            setFields()
+            updateGraph()
+        }
+    }
+    
+    func setFields(){
+        currentLabel.text = "\(Data.currentReading.temperature) °C"
+        avg24hoursLabel.text = "17°"
+        avg3daysLabel.text = "17°"
     }
     
     func updateGraph(){
         chartView.legend.enabled = false
         var lineChartData = [ChartDataEntry]()
-        let number = 10
-        for i in 0..<number{
-            let value = ChartDataEntry(x: Double(i), y: Data.sensorReadings[i].temperature)
+        
+        let number = 10 + 1
+        let count = Data.sensorReadings.count
+        for i in 1..<number{
+            let value = ChartDataEntry(x: Double(i), y: Data.sensorReadings[count - i].temperature)
             lineChartData.append(value)
         }
         let line = LineChartDataSet(entries: lineChartData, label: "")
@@ -54,8 +67,16 @@ class TemperatureViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if Data.currentReading.id != ""{
-            currentLabel.text = "\(Int(Data.currentReading.temperature)) °C"
+        observer = NotificationCenter.default.addObserver(forName: .currentReadingUpdate, object: nil, queue: OperationQueue.main) { (notification) in
+            self.setFields()
+            self.updateGraph()
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if let observer = observer {
+            NotificationCenter.default.removeObserver(observer)
         }
     }
     
