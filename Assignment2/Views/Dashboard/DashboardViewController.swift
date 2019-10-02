@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class DashboardViewController: UIViewController/*, DatabaseListener*/ {
 
@@ -22,12 +23,15 @@ class DashboardViewController: UIViewController/*, DatabaseListener*/ {
     
     var observer: NSObjectProtocol?
     
+    let locationManager = CLLocationManager()
+    
     //var allSensorReadings = [SensorReading]()
     //weak var databaseController: DatabaseProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        checkLocationServices()
         //view.backgroundColor = Theme.primary!.withAlphaComponent(0.4)
         cityLabel.setStyle()
         
@@ -81,6 +85,7 @@ class DashboardViewController: UIViewController/*, DatabaseListener*/ {
        observer = NotificationCenter.default.addObserver(forName: .currentReadingUpdate, object: nil, queue: OperationQueue.main) { (notification) in
             self.setFields()
         }
+        locationManager.startUpdatingLocation()
     }
           
     override func viewWillDisappear(_ animated: Bool) {
@@ -89,8 +94,11 @@ class DashboardViewController: UIViewController/*, DatabaseListener*/ {
         if let observer = observer {
             NotificationCenter.default.removeObserver(observer)
         }
+        locationManager.stopUpdatingLocation()
     }
        
+    
+    
     /*func onSensorReadingListChange(change: DatabaseChange, sensorReadings: [SensorReading]) {
         //print("In Dashboard")
         if Data.currentReading.id != "" {
@@ -110,4 +118,58 @@ class DashboardViewController: UIViewController/*, DatabaseListener*/ {
     }
     */
 
+}
+
+
+extension DashboardViewController: CLLocationManagerDelegate{
+    
+    func setupLocationManager(){
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+    }
+    
+    func checkLocationServices(){
+        if CLLocationManager.locationServicesEnabled(){
+            setupLocationManager()
+            checkLocationAuthorization()
+        }else{
+            // When location services is not enabled
+        }
+    }
+    
+    func checkLocationAuthorization(){
+        switch CLLocationManager.authorizationStatus(){
+        case .authorizedWhenInUse:
+            break
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+            break
+        case .authorizedAlways:
+            break
+        default:
+            cityLabel.text = "NA"
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        //Update the coordinates
+        guard let currentLocation = locations.last else {return}
+        print(currentLocation)
+        let geocoder = CLGeocoder()
+        geocoder.reverseGeocodeLocation(currentLocation) { (placemarks, error) in
+            if let _ = error {
+                print("Location fetching error: \(error!)")
+                self.cityLabel.text = "NA"
+                return
+            }
+            guard let placemark = placemarks?.first else {
+                return
+            }
+            self.cityLabel.text = placemark.locality
+        }
+        
+    }
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        //change authorization
+    }
 }

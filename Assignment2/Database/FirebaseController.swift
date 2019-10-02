@@ -15,6 +15,9 @@ import FirebaseFirestore
 
 
 class FirebaseController: NSObject, DatabaseProtocol {
+    
+    let ID = "b8:27:eb:bb:84:9b"
+    
     var listeners = MulticastDelegate<DatabaseListener>()
     var authController: Auth
     var database: Firestore
@@ -39,7 +42,7 @@ class FirebaseController: NSObject, DatabaseProtocol {
     }
    
     func setUpListeners() {
-        sensorReadingsRef = database.collection("sensor_readings")
+        sensorReadingsRef = database.collection(ID)
         // snapshot listener returns a snapshot of the data for the given reference
         // In this case it is the entire collection of sensor readings
         //this query contains all readings and not just the updated ones, we need to filter them out
@@ -67,6 +70,7 @@ class FirebaseController: NSObject, DatabaseProtocol {
             let timestampString = change.document.data()["timestamp"] as! String
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
             let timestamp = dateFormatter.date(from: timestampString)
 
             //print(documentRef)
