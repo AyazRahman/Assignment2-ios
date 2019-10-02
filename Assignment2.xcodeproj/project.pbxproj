@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0AD140D7E49460B4E76A1A59 /* Pods_Assignment2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FACAAFE5AFFBFCBBD18D1D5B /* Pods_Assignment2.framework */; };
-		2E2A1560233AEF3F00CFCD1C /* PulseAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2A155F233AEF3F00CFCD1C /* PulseAnimation.swift */; };
 		2EBE5F8F2339A55000193864 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBE5F8E2339A55000193864 /* AppDelegate.swift */; };
 		2EBE5F942339A55000193864 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EBE5F922339A55000193864 /* Main.storyboard */; };
 		2EBE5F962339A55200193864 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EBE5F952339A55200193864 /* Assets.xcassets */; };
@@ -20,7 +19,6 @@
 		2EBE5FC52339A8E200193864 /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBE5FC42339A8E200193864 /* Themes.swift */; };
 		2EBE5FC72339ABFE00193864 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBE5FC62339ABFE00193864 /* DashboardViewController.swift */; };
 		2EBE5FC92339B25400193864 /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBE5FC82339B25400193864 /* UILabelExtension.swift */; };
-		2EBE5FCF2339DCD100193864 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBE5FCE2339DCD100193864 /* StatsView.swift */; };
 		2EBE5FD22339E01F00193864 /* TemperatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBE5FD12339E01F00193864 /* TemperatureViewController.swift */; };
 		2EBE5FD52339E6B900193864 /* Temperature.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EBE5FD32339E6B900193864 /* Temperature.storyboard */; };
 		2EBE5FD92339E76E00193864 /* Altitude.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EBE5FD82339E76E00193864 /* Altitude.storyboard */; };
@@ -60,7 +58,6 @@
 /* Begin PBXFileReference section */
 		19EEB824CA768CB872047599 /* Pods_Assignment2_Assignment2UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Assignment2_Assignment2UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EB9E349D9BD0E119BA6FE14 /* Pods-Assignment2Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Assignment2Tests.debug.xcconfig"; path = "Target Support Files/Pods-Assignment2Tests/Pods-Assignment2Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		2E2A155F233AEF3F00CFCD1C /* PulseAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseAnimation.swift; sourceTree = "<group>"; };
 		2EBE5F8B2339A55000193864 /* Assignment2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Assignment2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EBE5F8E2339A55000193864 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2EBE5F932339A55000193864 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -78,7 +75,6 @@
 		2EBE5FC42339A8E200193864 /* Themes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Themes.swift; sourceTree = "<group>"; };
 		2EBE5FC62339ABFE00193864 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		2EBE5FC82339B25400193864 /* UILabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
-		2EBE5FCE2339DCD100193864 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		2EBE5FD12339E01F00193864 /* TemperatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureViewController.swift; sourceTree = "<group>"; };
 		2EBE5FD42339E6B900193864 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Assignment2/Base.lproj/Temperature.storyboard; sourceTree = "<group>"; };
 		2EBE5FD82339E76E00193864 /* Altitude.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Altitude.storyboard; sourceTree = "<group>"; };
@@ -209,7 +205,6 @@
 				2EBE5FD72339E73C00193864 /* Altitude */,
 				2EBE5FD62339E73200193864 /* Pressure */,
 				2EBE5FD02339DFFB00193864 /* Temperature */,
-				2EBE5FCB2339DC4000193864 /* Stats */,
 				2EBE5FC02339A89500193864 /* Dashboard */,
 			);
 			path = Views;
@@ -229,7 +224,6 @@
 			children = (
 				2EBE5FC22339A8CF00193864 /* Colors.xcassets */,
 				2EBE5FC42339A8E200193864 /* Themes.swift */,
-				2E2A155F233AEF3F00CFCD1C /* PulseAnimation.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -241,14 +235,6 @@
 				8F03F47623432D3800D73C37 /* NotificationNameExtension.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		2EBE5FCB2339DC4000193864 /* Stats */ = {
-			isa = PBXGroup;
-			children = (
-				2EBE5FCE2339DCD100193864 /* StatsView.swift */,
-			);
-			path = Stats;
 			sourceTree = "<group>";
 		};
 		2EBE5FD02339DFFB00193864 /* Temperature */ = {
@@ -566,14 +552,12 @@
 				8F83EAB4233F6095003CD998 /* Data.swift in Sources */,
 				A6CA542A233CA55700D99E4F /* testTableViewController.swift in Sources */,
 				2EBE5FDD2339E7C800193864 /* AltitudeViewController.swift in Sources */,
-				2EBE5FCF2339DCD100193864 /* StatsView.swift in Sources */,
 				2EBE5FC52339A8E200193864 /* Themes.swift in Sources */,
 				2EBE5FC72339ABFE00193864 /* DashboardViewController.swift in Sources */,
 				2EBE5F8F2339A55000193864 /* AppDelegate.swift in Sources */,
 				2EBE5FD22339E01F00193864 /* TemperatureViewController.swift in Sources */,
 				A6CA541C233CA19D00D99E4F /* MulticastDelegate.swift in Sources */,
 				A6CA5420233CA21E00D99E4F /* DatabaseProtocol.swift in Sources */,
-				2E2A1560233AEF3F00CFCD1C /* PulseAnimation.swift in Sources */,
 				A6CA5424233CA35A00D99E4F /* SensorReading.swift in Sources */,
 				A6CA541E233CA20900D99E4F /* FirebaseController.swift in Sources */,
 				2EBE5FDF2339E7E300193864 /* PressureViewController.swift in Sources */,

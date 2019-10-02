@@ -48,7 +48,7 @@ class testTableViewController: UITableViewController, DatabaseListener {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "readingCell", for: indexPath)
         let reading = allReadings[indexPath.row]
-        cell.textLabel!.text = reading.id
+        cell.textLabel!.text = String(reading.temperature)
         cell.detailTextLabel!.text = "\(reading.timestamp)"
     
         return cell

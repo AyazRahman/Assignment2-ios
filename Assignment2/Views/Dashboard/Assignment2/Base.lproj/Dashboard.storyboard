@@ -39,13 +39,6 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Expected to rain in the next 2 hours" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2gF-tR-PX1">
-                                        <rect key="frame" x="8" y="153" width="358" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -100,7 +93,6 @@
                         <outlet property="altitudeLabel" destination="yFe-i4-3OC" id="nzD-ba-QRl"/>
                         <outlet property="altitudeView" destination="hgC-No-sBS" id="izZ-i8-NZX"/>
                         <outlet property="cityLabel" destination="OS2-6c-xOz" id="kMM-AJ-6rS"/>
-                        <outlet property="conditionLabel" destination="2gF-tR-PX1" id="itn-UU-fzw"/>
                         <outlet property="pressureLabel" destination="X4K-fr-hF2" id="eRM-d0-h2m"/>
                         <outlet property="pressureView" destination="jGM-HF-wTk" id="0Wr-Mj-e51"/>
                         <outlet property="temperatureLabel" destination="2uv-OI-dYI" id="Q6N-0T-srK"/>

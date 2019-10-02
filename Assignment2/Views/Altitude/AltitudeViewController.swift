@@ -59,7 +59,7 @@ class AltitudeViewController: UIViewController {
         let number = 10
         let count = Data.sensorReadings.count
         for i in (count - number)..<count{
-            let value = ChartDataEntry(x: Double(i), y: Data.sensorReadings[count - i].altitude)
+            let value = ChartDataEntry(x: Double(i), y: Data.sensorReadings[i].altitude)
             lineChartData.append(value)
         }
         let line = LineChartDataSet(entries: lineChartData, label: "")

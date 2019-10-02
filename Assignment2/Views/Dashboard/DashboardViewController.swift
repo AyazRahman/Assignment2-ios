@@ -15,7 +15,7 @@ class DashboardViewController: UIViewController/*, DatabaseListener*/ {
     @IBOutlet weak var pressureView: UIView!
     
     @IBOutlet weak var cityLabel: UILabel!
-    @IBOutlet weak var conditionLabel: UILabel!
+    
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var altitudeLabel: UILabel!
     @IBOutlet weak var pressureLabel: UILabel!
@@ -30,7 +30,7 @@ class DashboardViewController: UIViewController/*, DatabaseListener*/ {
         
         //view.backgroundColor = Theme.primary!.withAlphaComponent(0.4)
         cityLabel.setStyle()
-        conditionLabel.setStyle()
+        
         temperatureLabel.setStyle()
         altitudeLabel.setStyle()
         pressureLabel.setStyle()

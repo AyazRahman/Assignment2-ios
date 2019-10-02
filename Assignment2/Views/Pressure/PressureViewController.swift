@@ -58,7 +58,7 @@ class PressureViewController: UIViewController {
         let number = 10
         let count = Data.sensorReadings.count
         for i in (count - number)..<count{
-            let value = ChartDataEntry(x: Double(i), y: Data.sensorReadings[count - i].pressure)
+            let value = ChartDataEntry(x: Double(i), y: Data.sensorReadings[i].pressure)
             lineChartData.append(value)
         }
         let line = LineChartDataSet(entries: lineChartData, label: "")

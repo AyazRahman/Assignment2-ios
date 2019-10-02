@@ -16,7 +16,7 @@ class Data {
         if sensorReadings.count == 0{return ["NA", "NA"]}
         
         let threeHour = sensorReadings.filter({ (item) -> Bool in
-            return item.timestamp.timeIntervalSinceNow > -10800
+            return item.timestamp.timeIntervalSinceNow > -86400
         })
         let threeDays = sensorReadings.filter({ (item) -> Bool in
             return item.timestamp.timeIntervalSinceNow > -259200
