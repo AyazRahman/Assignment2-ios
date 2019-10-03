@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Override point for customization after application launch.
         databaseController = FirebaseController()
         databaseController?.addListener(listener: self)
-        UITabBar.appearance().barTintColor = UIColor(named: "Primary")?.withAlphaComponent(1.0)
+        
         
         requestPermissionNotifications()
         
@@ -64,7 +64,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             print("\(Data.currentReading.temperature), \(Data.currentReading.altitude), \(Data.currentReading.pressure)")
             if Data.currentReading.lux < 1000 {Theme.current = LightTheme()}
             else {Theme.current = DarkTheme()}
-            
+            UITabBar.appearance().barTintColor = Theme.current.primary
+            UITabBar.appearance().tintColor = Theme.current.text
             NotificationCenter.default.post(name: .currentReadingUpdate, object: nil)
             
         }

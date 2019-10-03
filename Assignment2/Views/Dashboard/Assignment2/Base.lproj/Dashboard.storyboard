@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Item 1-->
+        <!--Home-->
         <scene sceneID="GHV-el-hFs">
             <objects>
                 <viewController id="pW1-wB-Xcx" customClass="DashboardViewController" customModule="Assignment2" customModuleProvider="target" sceneMemberID="viewController">
@@ -98,7 +98,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ss5-ER-2rf"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="fDX-Nq-fDD"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="house.fill" catalog="system" id="fDX-Nq-fDD"/>
                     <connections>
                         <outlet property="altitudeLabel" destination="yFe-i4-3OC" id="nzD-ba-QRl"/>
                         <outlet property="altitudeText" destination="ez2-zZ-tgw" id="ZKx-1q-iim"/>
@@ -119,6 +119,7 @@
     </scenes>
     <resources>
         <image name="Hiking" width="199" height="298.66665649414062"/>
+        <image name="house.fill" catalog="system" width="64" height="52"/>
         <namedColor name="Text">
             <color red="1" green="0.99000000953674316" blue="0.94999998807907104" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
