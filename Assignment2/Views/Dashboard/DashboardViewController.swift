@@ -21,6 +21,9 @@ class DashboardViewController: UIViewController/*, DatabaseListener*/ {
     @IBOutlet weak var altitudeLabel: UILabel!
     @IBOutlet weak var pressureLabel: UILabel!
     
+    @IBOutlet weak var overlay: UIView!
+    @IBOutlet weak var altitudeText: UILabel!
+    @IBOutlet weak var pressureText: UILabel!
     var observer: NSObjectProtocol?
     
     let locationManager = CLLocationManager()
@@ -33,30 +36,34 @@ class DashboardViewController: UIViewController/*, DatabaseListener*/ {
         
         checkLocationServices()
         //view.backgroundColor = Theme.primary!.withAlphaComponent(0.4)
-        cityLabel.setStyle()
         
-        temperatureLabel.setStyle()
-        altitudeLabel.setStyle()
-        pressureLabel.setStyle()
         
         setupAnimatedControls()
         
-        if Data.currentReading.id != ""{
-            setFields()
-        }
+        
         
         /*let appDelegate = UIApplication.shared.delegate as! AppDelegate
         databaseController = appDelegate.databaseController*/
     }
     
     func setFields(){
-        self.temperatureLabel.text = "\(Int(Data.currentReading.temperature)) °C"
-        self.pressureLabel.text = "\(Int(Data.currentReading.pressure/1000)) kPa"
+        self.temperatureLabel.text = "\(Data.currentReading.temperature) °C"
+        self.pressureLabel.text = "\(Data.currentReading.pressure/1000) kPa"
         self.altitudeLabel.text = "\(Data.currentReading.altitude) m"
+        
+        cityLabel.setStyle()
+        
+        temperatureLabel.setStyle()
+        altitudeLabel.setStyle()
+        pressureLabel.setStyle()
+        altitudeText.textColor = Theme.current.text
+        pressureText.textColor = Theme.current.text
+        overlay.backgroundColor = Theme.current.primary.withAlphaComponent(0.3)
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         UIView.animate(withDuration: 1.0, delay: 0.3, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: [], animations: {
             self.weatherView.transform = .identity
             self.altitudeView.transform = .identity
@@ -76,7 +83,7 @@ class DashboardViewController: UIViewController/*, DatabaseListener*/ {
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        return Theme.current.barStyle
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -86,6 +93,9 @@ class DashboardViewController: UIViewController/*, DatabaseListener*/ {
             self.setFields()
         }
         locationManager.startUpdatingLocation()
+        if Data.currentReading.id != "" {
+            setFields()
+        }
     }
           
     override func viewWillDisappear(_ animated: Bool) {
@@ -154,7 +164,7 @@ extension DashboardViewController: CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //Update the coordinates
         guard let currentLocation = locations.last else {return}
-        print(currentLocation)
+        
         let geocoder = CLGeocoder()
         geocoder.reverseGeocodeLocation(currentLocation) { (placemarks, error) in
             if let _ = error {
@@ -165,7 +175,11 @@ extension DashboardViewController: CLLocationManagerDelegate{
             guard let placemark = placemarks?.first else {
                 return
             }
-            self.cityLabel.text = placemark.locality
+            DispatchQueue.main.async {
+                self.cityLabel.text = placemark.locality
+            }
+            
+            
         }
         
     }

@@ -10,6 +10,5 @@ import UIKit
 
 class Theme {
     
-    static let primary  = UIColor(named: "Primary")
-    static let text = UIColor(named: "Text")
+    static var current: ThemeProtocol = LightTheme()
 }

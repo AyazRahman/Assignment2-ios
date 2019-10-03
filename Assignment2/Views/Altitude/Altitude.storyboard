@@ -70,10 +70,13 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 3" id="aVS-TK-2gc"/>
                     <connections>
+                        <outlet property="avg24hours" destination="ZuI-4d-4Sb" id="ary-O3-h0N"/>
                         <outlet property="avg24hoursLabel" destination="k9m-hu-YAo" id="NGI-Zy-2Fy"/>
+                        <outlet property="avg3days" destination="CwL-Ga-lUw" id="jpf-Qb-YP3"/>
                         <outlet property="avg3daysLabel" destination="F6w-jD-wW3" id="W0U-kS-hBF"/>
                         <outlet property="chartView" destination="ngY-EC-XMc" id="Vpf-9I-NHi"/>
                         <outlet property="currentLabel" destination="WT3-3v-dxk" id="lnY-rc-rfQ"/>
+                        <outlet property="currentReading" destination="K39-n2-D1S" id="1OJ-NP-tJp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LfK-ka-Vnc" userLabel="First Responder" sceneMemberID="firstResponder"/>

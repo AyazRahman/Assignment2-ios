@@ -16,6 +16,11 @@ class TemperatureViewController: UIViewController {
     @IBOutlet weak var currentLabel: UILabel!
     @IBOutlet weak var avg24hoursLabel: UILabel!
     @IBOutlet weak var avg3daysLabel: UILabel!
+
+    @IBOutlet weak var currentReading: UILabel!
+    
+    @IBOutlet weak var avg3days: UILabel!
+    @IBOutlet weak var avg24hours: UILabel!
     
     var observer: NSObjectProtocol?
     
@@ -27,10 +32,7 @@ class TemperatureViewController: UIViewController {
         avg24hoursLabel.text = "NA"
         avg3daysLabel.text = "NA"
         
-        if Data.currentReading.id != "" {
-            setFields()
-            updateGraph()
-        }
+        
     }
     
     func setFields(){
@@ -38,39 +40,56 @@ class TemperatureViewController: UIViewController {
         let average = Data.get3days(sensor: "Temperature")
         avg24hoursLabel.text = (average[0] == "NA" ? "NA" : "\(average[0]) °C")
         avg3daysLabel.text = (average[1] == "NA" ? "NA" : "\(average[1]) °C")
+        currentLabel.textColor = Theme.current.text
+        avg24hoursLabel.textColor = Theme.current.text
+        avg3daysLabel.textColor = Theme.current.text
+        currentReading.textColor = Theme.current.text
+        avg3days.textColor = Theme.current.text
+        avg24hours.textColor = Theme.current.text
+        self.view.backgroundColor = Theme.current.primary
     }
     
     func updateGraph(){
         chartView.legend.enabled = false
         var lineChartData = [ChartDataEntry]()
         
-        let number = 10
+        var number = 10
         let count = Data.sensorReadings.count
+        if count < number {
+            number = count
+        }
         for i in (count - number)..<count{
             let value = ChartDataEntry(x: Double(i), y: Data.sensorReadings[i].temperature)
             lineChartData.append(value)
         }
         let line = LineChartDataSet(entries: lineChartData, label: "")
-        line.colors = [Theme.text!]
+        line.colors = [Theme.current.text]
         let data = LineChartData()
         data.addDataSet(line)
         chartView.data = data
         chartView.chartDescription?.text = "Temperature Chart"
         //Changing color
-        chartView.data?.setValueTextColor(Theme.text!)
-        chartView.xAxis.labelTextColor = Theme.text!
-        chartView.leftAxis.labelTextColor = Theme.text!
-        chartView.rightAxis.labelTextColor = Theme.text!
-        chartView.chartDescription?.textColor = Theme.text!
+        chartView.data?.setValueTextColor(Theme.current.text)
+        chartView.xAxis.labelTextColor = Theme.current.text
+        chartView.leftAxis.labelTextColor = Theme.current.text
+        chartView.rightAxis.labelTextColor = Theme.current.text
+        chartView.chartDescription?.textColor = Theme.current.text
         
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        if Data.currentReading.id != "" {
+            setFields()
+            updateGraph()
+        }
         observer = NotificationCenter.default.addObserver(forName: .currentReadingUpdate, object: nil, queue: OperationQueue.main) { (notification) in
             self.setFields()
             self.updateGraph()
+            self.chartView.data?.notifyDataChanged()
+            self.chartView.notifyDataSetChanged()
+            
         }
     }
     
@@ -82,7 +101,7 @@ class TemperatureViewController: UIViewController {
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle{
-        return .lightContent
+        return Theme.current.barStyle
     }
 
     /*

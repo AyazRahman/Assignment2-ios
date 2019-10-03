@@ -43,12 +43,13 @@ class testTableViewController: UITableViewController, DatabaseListener {
     
     func onSensorReadingListChange(change: DatabaseChange, sensorReadings: [SensorReading]) {
         allReadings = sensorReadings
+        tableView.reloadData()
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "readingCell", for: indexPath)
         let reading = allReadings[indexPath.row]
-        cell.textLabel!.text = String(reading.temperature)
+        cell.textLabel!.text = "\(reading.temperature), \(reading.altitude), \(reading.pressure), \(reading.lux)"
         cell.detailTextLabel!.text = "\(reading.timestamp)"
     
         return cell

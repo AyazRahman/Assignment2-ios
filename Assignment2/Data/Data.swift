@@ -8,9 +8,15 @@
 
 import Foundation
 
+//struct WeatherCondition {
+//    var date: Date
+//    var condition: String
+//}
+
 class Data {
     static var sensorReadings = [SensorReading]()
     static var currentReading = SensorReading()
+//    static var weatherCondition = WeatherCondition(date: Date(), condition: "NIL")
     
     static func get3days(sensor: String) -> [String]{
         if sensorReadings.count == 0{return ["NA", "NA"]}
@@ -44,4 +50,33 @@ class Data {
         let average3days = Int(sum3days) / (threeDays.count == 0 ? 1 : threeDays.count)
         return [(average3hours == 0 ? "NA" : String(average3hours)), (average3days == 0 ? "NA" : String(average3days))]
     }
+    
+//    static func getWeatherCondition(lat: String, lon: String) -> String{
+//        if weatherCondition.date.timeIntervalSinceNow > -600 || weatherCondition.condition == "NIL"{
+//            // send the request
+//            let requestURL = "api.openweathermap.org/data/2.5/forecast?lat=\(lat)&lon=\(lon)&appid=f33af4818b00edb5ea80caba5310db66"
+//            let jsonURL = URL(string: requestURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+//            let task = URLSession.shared.dataTask(with: jsonURL!){
+//                (data, response, error) in
+//                if let error = error{
+//                    print(error.localizedDescription)
+//                    return
+//                }
+//                if let values = data {
+//                    let jsonRoot = try? JSONSerialization.jsonObject(with: values, options: [])
+//                    if let dictionary = jsonRoot as? [String: Any]{
+//                        let list = dictionary["list"] as? [String: Any]
+//                        for var i in 0..<3{
+//                            if let item = list?[i]{
+//
+//                            }
+//
+//                        }
+//                    }
+//                }
+//            }
+//            return ""
+//        }
+//        return weatherCondition.condition
+//    }
 }

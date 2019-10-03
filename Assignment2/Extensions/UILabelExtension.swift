@@ -18,7 +18,7 @@ extension UILabel {
     }
     */
     func setStyle(){
-        textColor = Theme.text
+        textColor = Theme.current.text
         
     }
 

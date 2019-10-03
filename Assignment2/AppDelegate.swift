@@ -12,7 +12,8 @@ import UserNotifications
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, DatabaseListener {
     
-    
+
+    var time = Date()
 
     var window: UIWindow?
     var databaseController: DatabaseProtocol?
@@ -22,11 +23,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Override point for customization after application launch.
         databaseController = FirebaseController()
         databaseController?.addListener(listener: self)
-        //UITabBar.appearance().barTintColor = Theme.primary!
-        UITabBar.appearance().tintColor = Theme.text!
+        UITabBar.appearance().barTintColor = UIColor(named: "Primary")?.withAlphaComponent(1.0)
+        
         requestPermissionNotifications()
         
-        postLocalNotifications(eventTitle: "Recent Stats")
+        
         return true
     }
 
@@ -57,10 +58,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func onSensorReadingListChange(change: DatabaseChange, sensorReadings: [SensorReading]) {
         Data.sensorReadings = sensorReadings
+        
         if Data.sensorReadings.count > 0 {
-            Data.currentReading = Data.sensorReadings.last!
+            Data.currentReading = sensorReadings.last!
+            print("\(Data.currentReading.temperature), \(Data.currentReading.altitude), \(Data.currentReading.pressure)")
+            if Data.currentReading.lux < 1000 {Theme.current = LightTheme()}
+            else {Theme.current = DarkTheme()}
+            
             NotificationCenter.default.post(name: .currentReadingUpdate, object: nil)
+            
         }
+        
+        if time.timeIntervalSinceNow < -3600 && Data.sensorReadings.count > 0 {
+            time = Date()
+            postLocalNotifications(eventTitle: "Current Reading")
+        }
+        
     }
     
     func postLocalNotifications(eventTitle:String){
@@ -68,11 +81,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         let content = UNMutableNotificationContent()
         content.title = eventTitle
-        content.subtitle = "The Temperature is normal"
+        //content.subtitle = "The Temperature is normal"
         content.body = "Current Stats: Altitude: \(Data.currentReading.altitude), Pressure: \(Data.currentReading.pressure), Temperature: \(Data.currentReading.temperature)"
+        
         content.sound = UNNotificationSound.default
         
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3600, repeats: true)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
         
         let notificationRequest:UNNotificationRequest = UNNotificationRequest(identifier: "notification", content: content, trigger: trigger)
         

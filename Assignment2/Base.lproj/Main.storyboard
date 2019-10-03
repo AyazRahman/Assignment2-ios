@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -11,11 +12,11 @@
         <scene sceneID="kp7-QF-kOA">
             <objects>
                 <tabBarController id="wte-xf-4lb" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="NyF-8E-J7F">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="NyF-8E-J7F">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="0.047067561619718312" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="barTintColor" red="0.01919877901673317" green="0.14292189478874207" blue="0.24667689204216003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" name="Primary"/>
                     </tabBar>
                     <connections>
                         <segue destination="ffu-rd-VuQ" kind="relationship" relationship="viewControllers" id="BLE-wf-PS7"/>
@@ -80,4 +81,9 @@
             <point key="canvasLocation" x="-1781" y="1527"/>
         </scene>
     </scenes>
+    <resources>
+        <namedColor name="Primary">
+            <color red="0.0" green="0.2800000011920929" blue="0.49000000953674316" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

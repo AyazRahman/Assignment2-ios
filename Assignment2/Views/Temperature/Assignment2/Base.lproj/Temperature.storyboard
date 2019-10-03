@@ -84,10 +84,13 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 2" id="Eqb-eZ-bm4"/>
                     <connections>
+                        <outlet property="avg24hours" destination="3iM-3X-8pb" id="aIR-rJ-CAn"/>
                         <outlet property="avg24hoursLabel" destination="cOb-7A-xF7" id="JUr-oy-NYF"/>
+                        <outlet property="avg3days" destination="kzb-4d-cY3" id="SPt-m0-h71"/>
                         <outlet property="avg3daysLabel" destination="Tzf-hK-eCc" id="VIS-To-b0V"/>
                         <outlet property="chartView" destination="9Aq-ZO-ZbJ" id="ido-C2-JJD"/>
                         <outlet property="currentLabel" destination="o6P-aY-a0A" id="ot3-ZD-CtC"/>
+                        <outlet property="currentReading" destination="4Fs-hZ-gpy" id="bmW-xt-w6J"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SB0-Ha-T3F" userLabel="First Responder" sceneMemberID="firstResponder"/>
