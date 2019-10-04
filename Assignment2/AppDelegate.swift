@@ -85,7 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             
         }
         
-        if time.timeIntervalSinceNow < -60 && Data.sensorReadings.count > 0 {
+        if time.timeIntervalSinceNow < -1800 && Data.sensorReadings.count > 0 {
             time = Date()
             postLocalNotifications(eventTitle: "Current Reading")
         }
