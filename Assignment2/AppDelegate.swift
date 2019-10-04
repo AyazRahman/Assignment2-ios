@@ -8,6 +8,7 @@
 
 import UIKit
 import UserNotifications
+import WatchConnectivity
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, DatabaseListener {
@@ -17,6 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     var window: UIWindow?
     var databaseController: DatabaseProtocol?
+    
+    var session: WCSession?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -27,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         requestPermissionNotifications()
         
+        configureWatchKitSession()
         
         return true
     }
@@ -62,19 +66,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if Data.sensorReadings.count > 0 {
             Data.currentReading = sensorReadings.last!
             print("\(Data.currentReading.temperature), \(Data.currentReading.altitude), \(Data.currentReading.pressure)")
-            if Data.currentReading.lux < 1000 {Theme.current = LightTheme()}
-            else {Theme.current = DarkTheme()}
+            if Data.currentReading.lux < 500 {Theme.current = DarkTheme()}
+            else {Theme.current = LightTheme()}
             UITabBar.appearance().barTintColor = Theme.current.primary
             UITabBar.appearance().tintColor = Theme.current.text
             NotificationCenter.default.post(name: .currentReadingUpdate, object: nil)
+            if let validSession = self.session {
+                let altitude = Data.currentReading.altitude
+                let pressure = round((Data.currentReading.pressure/1000)*1000)/1000
+                let temperature = Data.currentReading.temperature
+                let message = ["temperature": temperature, "pressure": pressure, "altitude": altitude]
+                    do {
+                        try validSession.updateApplicationContext(message)
+                    } catch {
+                        print("Something went wrong")
+                    }
+            }
             
         }
         
-        if time.timeIntervalSinceNow < -3600 && Data.sensorReadings.count > 0 {
+        if time.timeIntervalSinceNow < -60 && Data.sensorReadings.count > 0 {
             time = Date()
             postLocalNotifications(eventTitle: "Current Reading")
         }
-        
     }
     
     func postLocalNotifications(eventTitle:String){
@@ -161,4 +175,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
 }
+
+extension AppDelegate: WCSessionDelegate {
+    
+    func configureWatchKitSession() {
+        if WCSession.isSupported() {//4.1
+            session = WCSession.default//4.2
+            session?.delegate = self//4.3
+            session?.activate()//4.4
+            print("app delegate Session has been activated")
+        }
+    }
+    
+    func sessionDidBecomeInactive(_ session: WCSession) {
+        print("1 sessionDidBecomeInactive")
+    }
+       
+    func sessionDidDeactivate(_ session: WCSession) {
+        print("2 sessionDidDeactivate")
+    }
+       
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        print("3 activation state: \(activationState)")
+    }
+    
+}
+
 

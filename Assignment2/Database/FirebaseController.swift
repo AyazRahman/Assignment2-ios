@@ -80,7 +80,7 @@ class FirebaseController: NSObject, DatabaseProtocol {
            
             //for each document we check the type of change that has occured
             // for an add create a new reading and append it to the list of readings
-            if change.type == .added {
+            if change.type == .added || change.type == .modified {
                 //print("new reading: \(change.document.data())")
                 let newReading = SensorReading()
                 newReading.altitude = altitude
@@ -100,7 +100,7 @@ class FirebaseController: NSObject, DatabaseProtocol {
                     sensorReadingList.remove(at: index)
                 }
             }
-            if sensorReadingList.count > 0{
+            if sensorReadingList.count > 0 {
                 Data.currentReading = sensorReadingList.last!
             }
         }

@@ -100,7 +100,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xYY-bu-SLB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Temperature" image="Temp" id="Eqb-eZ-bm4"/>
+                    <tabBarItem key="tabBarItem" title="Temperature" image="temp" id="Eqb-eZ-bm4"/>
                     <connections>
                         <outlet property="avg24hours" destination="3iM-3X-8pb" id="aIR-rJ-CAn"/>
                         <outlet property="avg24hoursLabel" destination="cOb-7A-xF7" id="JUr-oy-NYF"/>
@@ -117,7 +117,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Temp" width="16.666666030883789" height="16.666666030883789"/>
+        <image name="temp" width="16.666666030883789" height="16.666666030883789"/>
         <namedColor name="Text">
             <color red="1" green="0.99000000953674316" blue="0.94999998807907104" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
